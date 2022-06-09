@@ -1,11 +1,10 @@
 import './App.css';
-import {Button} from 'antd'
+import Router from './router/index'
+
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <Button type="primary">primary</Button>
-      </header>
+       <Router></Router>
     </div>
   );
 }
