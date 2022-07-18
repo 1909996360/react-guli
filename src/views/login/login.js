@@ -1,21 +1,53 @@
-import { Component } from "react";
 import styles from './login.module.less'
-import { Button, Form, Input } from 'antd';
-import {Navigate} from 'react-router-dom'
-
-class Login extends Component {
-    state = {
-        user:null
+import { Button, Form, Input ,message} from 'antd';
+import { Navigate } from 'react-router-dom'
+import { PageComponent } from '../PageComponent/index'
+import { userLogin } from '@/services/index'
+class Login extends PageComponent {
+    constructor(props) {
+        super(props)
+        this.state = {
+            user: null,
+            time: 1
+        }
     }
-     onFinish = (values) =>{
+
+    async componentDidMount() {
+        // let res = await getByDomain()
+        // console.log('res', res);
+        console.log('触发子类componentDidMount');
+    }
+    componentWillUnmount() {
+        console.log('触发子类componentWillUnmount');
+    }
+    shouldComponentUpdate(nextProps, nextState) {
+        return nextProps !== nextState
+    }
+    componentDidCatch() {
+        console.log('触发子类componentDidCatch');
+    }
+    componentDidUpdate() {
+        console.log('触发子类componentDidUpdate');
+    }
+    onFinish = async(values) => {
+        const hide = message.loading('正在登录....', 0);
         const { username, password } = values
-        if (username && password) {
-            this.setState({ user: '222' })
-          }
-      }
+        const data = await userLogin(username,password)
+        hide()
+        if(data && data.code === 200 && data.data){
+            message.success('登录成功');
+            this.setState({
+                user:true
+            })
+        }else{
+            message.error(data.msg + '，请重新登录');
+        }
+    }
+
 
     render() {
         const LoginForm = (
+            <div className={styles.loginForm}>
                 <Form
                     name="basic"
                     labelCol={{ span: 8 }}
@@ -47,14 +79,19 @@ class Login extends Component {
                         </Button>
                     </Form.Item>
                 </Form>
+            </div>
+
         )
         const { user } = this.state
 
 
         return (
             <div className={styles.lgContainer}>
-                {user &&(<Navigate to="/Home" replace="true"></Navigate>)}
-                {LoginForm}
+                {user && (<Navigate to="/Home" replace="true"></Navigate>)}
+                <div className={styles.container}>
+                    {LoginForm}
+                </div>
+
             </div>
         )
     }

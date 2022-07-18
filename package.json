@@ -14,6 +14,7 @@
     "@types/react": "^18.0.12",
     "@types/react-dom": "^18.0.5",
     "antd": "^4.21.0",
+    "axios": "^0.27.2",
     "babel-jest": "^27.4.2",
     "babel-loader": "^8.2.3",
     "babel-plugin-named-asset-import": "^0.3.8",
@@ -45,6 +46,7 @@
     "postcss-normalize": "^10.0.1",
     "postcss-preset-env": "^7.0.1",
     "prompts": "^2.4.2",
+    "qs": "^6.10.5",
     "react": "^18.1.0",
     "react-app-polyfill": "^3.0.0",
     "react-dev-utils": "^12.0.1",
@@ -66,10 +68,14 @@
     "webpack-manifest-plugin": "^4.0.2",
     "workbox-webpack-plugin": "^6.4.1"
   },
+  "homepage": ".",  
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
-    "test": "node scripts/test.js"
+    "test": "node scripts/test.js",
+    "server": "dotenv -e .env.development node scripts/start.js --open",
+    "prd": "dotenv -e .env.production node scripts/build.js",
+    "testbuild":"dotenv -e .env.test node scripts/start.js -- open"
   },
   "eslintConfig": {
     "extends": [
@@ -144,5 +150,8 @@
     "presets": [
       "react-app"
     ]
+  },
+  "devDependencies": {
+    "dotenv-cli": "^5.1.0"
   }
 }

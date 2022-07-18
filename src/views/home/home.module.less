@@ -1,6 +1,135 @@
-.lgContainer{
-    color: red;
-    .lgTxt{
-        color: yellow;
+.container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    background-color: #f1f1f1;
+
+    .left {
+        background: #001529;
+        min-width: 12%;
+    }
+
+    .leftNone {
+        background: #001529;
+        min-width: 5%;
+    }
+
+    .meun {
+        :global {
+            .ant-menu {
+                user-select: none;
+            }
+        }
+    }
+
+    .right {
+        flex: 1;
+
+        .top {
+            user-select: none;
+            border-left: 1px solid #ccc;
+            width: 100%;
+            height: 50px;
+            line-height: 50px;
+            background: #001529;
+            padding: 0 20px;
+            display: flex;
+            color: rgb(226, 226, 226);
+
+            .topTitle {
+                font-size: 14px;
+            }
+
+            .avatar {
+                margin-left: auto;
+                display: flex;
+
+                :global {
+                    .ant-avatar {
+                        margin: 8px;
+                    }
+                }
+            }
+        }
+
+        .tabs {
+            width: 100%;
+            height: 45px;
+            background: rgba(214, 213, 213);
+            line-height: 45px;
+            display: flex;
+            padding: 0 10px;
+            user-select: none;
+            cursor: pointer;
+            .tabItem{
+                min-width: 150px;
+                margin-top: 5px;
+                height: 40px;
+                line-height: 40px;
+                padding:  0 20px;
+                display: flex;
+                justify-content: space-between;
+                border-top-left-radius: 10px;
+                border-top-right-radius: 10px;
+                .iconClose{
+                    :global{
+                        .anticon{
+                            border: 1px solid #333;
+                            color: #333;
+                            border-radius: 50%;
+                            font-size: 12px;
+                            padding: 2px;
+                        }
+                    }
+                }
+                &:hover{
+                    background-color: rgb(184, 183, 183);
+                    z-index: 2;
+                }
+            }
+            .tabActive{
+                min-width: 150px;
+                border-top-left-radius: 10px;
+                border-top-right-radius: 10px;
+                margin-top: 5px;
+                height: 40px;
+                line-height: 40px;
+                padding:  0 20px;
+                background:rgba(243, 242, 242);
+                display: flex;
+                justify-content: space-between;
+                position: relative;
+                &::before,&::after{
+                    position: absolute;
+                    bottom: 0;
+                    content: '';
+                    width: 20px;
+                    height: 20px;
+                    border-radius: 100%;
+                    box-shadow: 0 0 0 40px rgba(243, 242, 242);
+                    z-index: 1;
+                }
+                &::before{
+                    left: -20px;
+                    clip-path: inset(50% -10px 0 50%);
+                }
+                &::after{
+                    right: -20px;
+                    clip-path: inset(50% 50% 0 -10px);
+                }
+                .iconClose{
+                    :global{
+                        .anticon{
+                            border: 1px solid #333;
+                            color: #333;
+                            border-radius: 50%;
+                            font-size: 12px;
+                            padding: 2px;
+                        }
+                    }
+                }
+            }
+            
+        }
     }
 }
